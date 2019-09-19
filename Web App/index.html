@@ -1,0 +1,162 @@
+<html>
+<head>
+  <title>Crop Monitoring</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+</head>
+<body>
+
+  <div id="login_div" class="main-div">
+    <h3>Firebase Web login Example</h3>
+    <input type="email" placeholder="Email..." id="email_field" />
+    <input type="password" placeholder="Password..." id="password_field" />
+
+    <button onclick="login()">Login to Account</button>
+  </div>
+
+  <div id="user_div" class="loggedin-div">
+
+    <h3>Welcome!</h3>
+    <p id="user_para">Welcome to Firebase web login Example. You're currently logged in.</p>
+
+	<div id="out-mod">
+		<div id="top-out">
+		<h4>Output Module</h4>
+		<p> You can select if you have an Output Module connected to your device below. </p>
+		<input type="radio" name="om-state" value=0> Output Module connected. <br>
+		<input type="radio" name="om-state" value=1> No output module. <br>
+		<input type="button" value="Save" onclick="saveOMState()">
+		</div>
+		
+		<div id="out-pins">
+			<h4>Output Variable</h4>
+			<p> You can select the number that will be outputted from your Output Module's Analog Signal Out pin below. </p>
+			<input type="radio" name="out-var" value=0> Air Temperature <br>
+			<input type="radio" name="out-var" value=1> Air Temperature <br>
+			<input type="radio" name="out-var" value=2> Air Humidity <br>
+			<input type="radio" name="out-var" value=3> Air Pressure <br>
+			<input type="radio" name="out-var" value=4> Soil Temperature <br>
+			<input type="radio" name="out-var" value=5> Soil Moisture <br>
+			<input type="radio" name="out-var" value=6> Leaf Moisture <br>
+			<input type="radio" name="out-var" value=7> Light Intensity <br>
+			<input type="radio" name="out-var" value=8> UV Intensity <br>
+			<input type="button" value="Save" onclick="saveOutVar()">
+			<h4>Output Threshold</h4>
+			<p> If the output variable you selected above is greater than this value, your Output Module will output a trigger from its digital output pin. </p>
+			<input type="number" name="outvar-threshold"> <br>
+			<input type="button" value="Save" onclick="saveOutVarThreshold()">
+		</div>
+
+		<div id="out-buzzer">
+			<h4>Buzzer Feature</h4>
+			<p> You can turn on or off the buzzer alerting feature of your output module below. </p>
+			<input type="radio" name="is-buzzer-enabled" value=0> Off <br>
+			<input type="radio" name="is-buzzer-enabled" value=1> On <br>
+			<input type="button" value="Save" onclick="saveBuzzerEnabled()">
+
+			<h4>Buzzer Variable</h4>
+			<p> Your buzzer will start beeping when this variable is greater than the threshold you set. </p>
+			<input type="radio" name="buzzer-var" value=0> Air Temperature <br>
+			<input type="radio" name="buzzer-var" value=1> Air Temperature <br>
+			<input type="radio" name="buzzer-var" value=2> Air Humidity <br>
+			<input type="radio" name="buzzer-var" value=3> Air Pressure <br>
+			<input type="radio" name="buzzer-var" value=4> Soil Temperature <br>
+			<input type="radio" name="buzzer-var" value=5> Soil Moisture <br>
+			<input type="radio" name="buzzer-var" value=6> Leaf Moisture <br>
+			<input type="radio" name="buzzer-var" value=7> Light Intensity <br>
+			<input type="radio" name="buzzer-var" value=8> UV Intensity <br>
+			<input type="button" value="Save" onclick="saveBuzzerVar()">
+
+			<h4>Buzzer Threshold</h4>
+			<p> If the buzzer variable you selected above is greater than this value, your Output Module will make a beep sound continuously. </p>
+			<input type="number" name="buzzer-threshold"> <br>
+			<input type="button" value="Save" onclick="saveBuzzerVarThreshold()">
+		</div>
+
+		<div id="out-relay">
+			<h4>Wall Plug Feature</h4>
+			<p> You can turn on or off the wall plug controlling feature of your Output Module below. </p>
+			<input type="radio" name="is-relay-enabled" value=0> Off <br>
+			<input type="radio" name="is-relay-enabled" value=1> On <br>
+			<input type="button" value="Save" onclick="saveRelayEnabled()">
+
+			<h4>Wall Plug Variable</h4>
+			<p> Your wall plug will have mains electricity when this variable is greater than the threshold you set. </p>
+			<input type="radio" name="relay-var" value=0> Air Temperature <br>
+			<input type="radio" name="relay-var" value=1> Air Temperature <br>
+			<input type="radio" name="relay-var" value=2> Air Humidity <br>
+			<input type="radio" name="relay-var" value=3> Air Pressure <br>
+			<input type="radio" name="relay-var" value=4> Soil Temperature <br>
+			<input type="radio" name="relay-var" value=5> Soil Moisture <br>
+			<input type="radio" name="relay-var" value=6> Leaf Moisture <br>
+			<input type="radio" name="relay-var" value=7> Light Intensity <br>
+			<input type="radio" name="relay-var" value=8> UV Intensity <br>
+			<input type="button" value="Save" onclick="saveRelayVar()">
+
+			<h4>Wall Plug Threshold</h4>
+			<p> If the wall plug variable you selected above is greater than this value, your Output Module's wall plug will allow electricity to flow. </p>
+			<input type="number" name="relay-threshold"> <br>
+			<input type="button" value="Save" onclick="saveRelayVarThreshold()">
+			
+			<h4>Wall Plug Control</h4>
+			<p> Here you can turn the wall plug on or off. Note that it will take about a minute to apply your selection.</p>
+			<input type="button" value="Turn On" onclick="relayOn()">
+			<input type="button" value="Turn Off" onclick="relayOff()">
+		</div>
+
+	</div>
+	
+	<div id="data">
+			<h4>Air Temperature</h4>
+			<div class="ct-chart ct-golden-section" id="chart1"></div>
+			<h4>Air Humidity</h4>
+			<div class="ct-chart ct-golden-section" id="chart2"></div>
+			<h4>Air Pressure</h4>
+			<div class="ct-chart ct-golden-section" id="chart3"></div>
+			<h4>Soil Temperature</h4>
+			<div class="ct-chart ct-golden-section" id="chart4"></div>
+			<h4>Soil Moisture</h4>
+			<div class="ct-chart ct-golden-section" id="chart5"></div>
+			<h4>Leaf Moisture</h4>
+			<div class="ct-chart ct-golden-section" id="chart6"></div>
+			<h4>Light Intensity</h4>
+			<div class="ct-chart ct-golden-section" id="chart7"></div>
+			<h4>UV-rate</h4>
+			<div class="ct-chart ct-golden-section" id="chart8"></div>
+	</div>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "apiKey",
+      authDomain: "placeholder.firebaseapp.com",
+      databaseURL: "https://placeholder.firebaseio.com",
+      projectId: "placeholder",
+      storageBucket: "placeholder.appspot.com",
+      messagingSenderId: "placeholder",
+      appId: "placeholder"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var database = firebase.database();
+  </script>
+  <script src="index.js"></script>
+  <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+  <script src="charts.js"></script>
+  <script type="text/javascript">
+    generateCharts();
+  </script>
+
+</body>
+</html>
