@@ -1,6 +1,6 @@
 # CropMS :herb: <sub><sup> Modular, affordable, and internet-connected crop &amp; greenhouse monitoring system. </sup></sub>
 
-Basically this is a device I made using a NodeMCU ESP-32S to actively monitor the stats which can affect crop development. To keep it affordable for hobbyists, I designed it to be consist of different modules, so that one can purchase only the modules he/she considers important. Currently, the overall cost of the system including each sensor is about $30.
+This is a device I made using a NodeMCU ESP-32S to actively monitor the stats which can affect crop development. To keep it affordable for hobbyists, I designed it to be consist of different modules so that one can purchase only the modules he/she considers important. Currently, the overall cost of the system including each sensor is about $30.
 
 Things that system logs are as the following:
 * Air temperature
