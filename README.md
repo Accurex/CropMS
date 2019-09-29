@@ -16,6 +16,6 @@ In addition to these features, the system can also perform outputting actions su
 
 The system displays the data it logged on a nicely designed, simple user interface which can be accessed using a web browser. The interface also gives users options to set the triggering events. All the data are read from and written to a Firebase realtime database.
 
-After developing and manufacturing the system, I presented it to hobbyists and farmers and asked them to rate the feasibility of the device, and received pretty positive feedbacks. So this is definitely a **_work in progress_**; I will continue improving it according to those feedbacks.
+After developing and manufacturing the system, I presented it to hobbyists and farmers and asked them to rate the feasibility of the device, and received pretty positive feedbacks. Although feedbacks are positive, I think that there are still things which can be improved such as the device's form factor, or the manufacturing quality (by the use of PCBs). So this a **_work in progress_**.
 
 I also wrote a research paper covering all the details, from implementation to testing and results (including the ratings of the testers). You can find it [here](https://www.academia.edu/40470846/Modular_and_Affordable_Crop_Monitoring_System).
