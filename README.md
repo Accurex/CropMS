@@ -18,4 +18,4 @@ The system displays the data it logged on a nicely designed, simple user interfa
 
 After developing and manufacturing the system, I presented it to hobbyists and farmers and asked them to rate the feasibility of the device, and received pretty positive feedbacks. So this is definitely a **_work in progress_**; I will continue improving it according to those feedbacks.
 
-I also wrote a research paper covering all the details, from implementation to testing and results (including the ratings of the testers). I will leave the link here when I upload it to a public source.
+I also wrote a research paper covering all the details, from implementation to testing and results (including the ratings of the testers). You can find it [here](https://www.academia.edu/40470846/Modular_and_Affordable_Crop_Monitoring_System).
